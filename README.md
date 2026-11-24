@@ -195,6 +195,18 @@ go build ./...
 
 ---
 
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to contribute by opening an issue or a Pull Request. When adding new specifications or improvements, please follow the existing patterns across the repository:
+
+- **Package Naming**:
+  - Finalized IETF RFCs should use their RFC identifier as the package name (e.g., `rfc6749`, `rfc7636`, `rfc8707`).
+  - IETF drafts, OpenID specifications, or standards from other bodies (such as OASIS or W3C) can use a concise, descriptive domain name (e.g., `oidc`, `oauth`, `saml`).
+- **Unopinionated Building Blocks**: Avoid heavy architectural opinionation. Focus on providing spec-faithful models, constants, ABNF/syntax validations, extensible interfaces, and helper utilities—anything that helps developers build compliant software and is not already covered by the Go Standard Library.
+- **Zero External Dependencies**: Stick to the Go Standard Library for core specification packages, include spec section references in doc comments, and add unit tests for new functionality.
+
+---
+
 ## 📄 License
 
 This project is licensed under the MIT License.

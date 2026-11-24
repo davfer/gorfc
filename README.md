@@ -1,5 +1,10 @@
 # gorfc 🛡️
 
+[![CI](https://github.com/davfer/gorfc/actions/workflows/ci.yml/badge.svg)](https://github.com/davfer/gorfc/actions/workflows/ci.yml)
+[![Release](https://github.com/davfer/gorfc/actions/workflows/release.yml/badge.svg)](https://github.com/davfer/gorfc/actions/workflows/release.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/davfer/gorfc.svg)](https://pkg.go.dev/github.com/davfer/gorfc)
+[![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
+
 **Go RFC Standards & Identity Infrastructure Primitives**
 
 `gorfc` is a lightweight, spec-compliant, zero-dependency Go library that provides data models, validation functions, HTTP handlers, and cryptographic primitives for IETF RFCs and OpenID specifications.

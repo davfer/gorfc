@@ -6,6 +6,9 @@
 
 Designed specifically to serve as the building blocks for modern **Identity Providers (IdP)**, **OAuth 2.0 / OpenID Connect Authorization Servers**, **Resource Servers**, and **secure enterprise applications**.
 
+> [!NOTE]
+> **AI-Assisted Development Disclaimer**: This repository was developed with the assistance of AI coding agents under human architectural direction, review, and strict specification rules (see [`AGENTS.md`](./AGENTS.md)). While all implementations are thoroughly tested against IETF RFC and OpenID specifications, please conduct appropriate security reviews before deploying in production environments.
+
 ---
 
 ## 🚀 Key Features

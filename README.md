@@ -1,7 +1,7 @@
 <div align="center">
   <img src="./logo.png" alt="gorfc logo" width="140" />
 
-  <h3>Go RFC Standards & Identity Infrastructure Primitives</h3>
+  <h3>Go RFC Standards Bookshelf</h3>
 
   <p>
     <a href="https://github.com/davfer/gorfc/actions/workflows/ci.yml"><img src="https://github.com/davfer/gorfc/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>

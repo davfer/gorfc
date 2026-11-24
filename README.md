@@ -1,11 +1,17 @@
-# gorfc 🛡️
+<div align="center">
+  <img src="./logo.png" alt="gorfc logo" width="140" />
 
-[![CI](https://github.com/davfer/gorfc/actions/workflows/ci.yml/badge.svg)](https://github.com/davfer/gorfc/actions/workflows/ci.yml)
-[![Release](https://github.com/davfer/gorfc/actions/workflows/release.yml/badge.svg)](https://github.com/davfer/gorfc/actions/workflows/release.yml)
-[![Go Reference](https://pkg.go.dev/badge/github.com/davfer/gorfc.svg)](https://pkg.go.dev/github.com/davfer/gorfc)
-[![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
+  <h3>Go RFC Standards & Identity Infrastructure Primitives</h3>
 
-**Go RFC Standards & Identity Infrastructure Primitives**
+  <p>
+    <a href="https://github.com/davfer/gorfc/actions/workflows/ci.yml"><img src="https://github.com/davfer/gorfc/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+    <a href="https://github.com/davfer/gorfc/actions/workflows/release.yml"><img src="https://github.com/davfer/gorfc/actions/workflows/release.yml/badge.svg" alt="Release" /></a>
+    <a href="https://github.com/davfer/gorfc/releases"><img src="https://img.shields.io/github/v/release/davfer/gorfc" alt="GitHub Release" /></a>
+    <a href="https://pkg.go.dev/github.com/davfer/gorfc"><img src="https://pkg.go.dev/badge/github.com/davfer/gorfc.svg" alt="Go Reference" /></a>
+    <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" /></a>
+    <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release" alt="semantic-release: angular" /></a>
+  </p>
+</div>
 
 `gorfc` is a lightweight, spec-compliant, zero-dependency Go library that provides data models, validation functions, HTTP handlers, and cryptographic primitives for IETF RFCs and OpenID specifications.
 

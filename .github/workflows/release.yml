@@ -46,3 +46,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx --yes semantic-release
+
+      - name: Trigger pkg.go.dev indexing for new tag
+        run: |
+          git fetch --tags
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || true)
+          if [ -n "$LATEST_TAG" ]; then
+            echo "Requesting proxy.golang.org to index github.com/davfer/gorfc@${LATEST_TAG}..."
+            curl -sSf "https://proxy.golang.org/github.com/davfer/gorfc/@v/${LATEST_TAG}.info" || true
+          fi

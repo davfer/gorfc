@@ -29,8 +29,9 @@ Designed specifically to serve as the building blocks for modern **Identity Prov
 | **OpenID Connect Core 1.0** | [`oidc`](./oidc) | `IDTokenClaims`, `StandardClaims`, `AddressClaim`, Authentication Requests/Responses, Flow Determination | ✅ Implemented |
 | **OpenID Connect Discovery 1.0** | [`oidc`](./oidc) | `ProviderMetadata` (`/.well-known/openid-configuration`), `WebFingerResponse` (`/.well-known/webfinger`), Discovery HTTP Handler | ✅ Implemented |
 | **JWKS Publishing** | [`jwks`](./jwks) | `KeyProvider` interface, `MemoryProvider`, `KeyToJWK` safety converter (strips private keys), HTTP Handler (`application/jwk-set+json`) | ✅ Implemented |
-| **RFC 7636** <br> *(PKCE)* | [`rfc7636`](./rfc7636) | Proof Key for Code Exchange (Code Challenge & Verifier, S256/Plain) | ✅ Implemented |
+| **RFC 7636** <br> *(PKCE)* | [`rfc7636`](./rfc7636) | Proof Key for Code Exchange (`AuthorizationRequest`, `TokenRequest`, extendable `PKCE` verifier registry, `S256`/`plain`, `GenerateCodeVerifier`) | ✅ Implemented |
 | **RFC 8176** <br> *(Authentication Method Reference Values)* | [`rfc8176`](./rfc8176) | Registered AMR Constants (`pwd`, `mfa`, `otp`, `user`, `hwk`, etc.), IANA AMR Registry integration | ✅ Implemented |
+| **RFC 8707** <br> *(Resource Indicators for OAuth 2.0)* | [`rfc8707`](./rfc8707) | `Resources` (dual string/slice JSON handler), `AuthorizationRequest`, `TokenRequest`, `ErrInvalidTarget`, absolute-URI validators, extendable `Validator` | ✅ Implemented |
 | **draft-ietf-oauth-first-party-apps** <br> *(First-Party Applications)* | [`oauth/grant`](./oauth/grant) | `FirstPartyAppGrant`, `AuthorizationChallengeRequest`, `AuthorizationChallengeResponse`, `AuthorizationChallengeError`, `Challenger`, `ChallengeCodeCreator`, 256-bit `auth_session` generator | ✅ Implemented |
 | **RFC 9449** *(DPoP)* | `rfc9449` | Demonstration of Proof-of-Possession at the Application Layer | 🛠️ Planned |
 | **RFC 7662** *(Token Introspection)* | `rfc7662` | OAuth 2.0 Token Introspection Endpoint | 🛠️ Planned |

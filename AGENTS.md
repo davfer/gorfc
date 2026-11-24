@@ -46,9 +46,10 @@ gorfc/
 ├── rfc6749/         # RFC 6749: OAuth 2.0 Authorization Framework models, grant types & ABNF validators
 ├── rfc7517/         # RFC 7517: JSON Web Key (JWK) & JWK Set (JWKS) data structures & key parameters
 ├── rfc7519/         # RFC 7519: JSON Web Token (JWT) claims set, JOSE headers & exhaustive claim dictionary
-├── rfc7636/         # RFC 7636: Proof Key for Code Exchange (PKCE) parameters, ABNF verifiers & S256/plain challenges
+├── rfc7636/         # RFC 7636: Proof Key for Code Exchange (PKCE) models, ABNF verifiers & extendable PKCE manager
 ├── rfc8176/         # RFC 8176: Authentication Method Reference (AMR) Values
 ├── rfc8259/         # RFC 8259: The JavaScript Object Notation (JSON) Data Interchange Format
+├── rfc8707/         # RFC 8707: Resource Indicators for OAuth 2.0 models, URI validators & extendable Validator
 ├── rfc9101/         # RFC 9101: The OAuth 2.0 Authorization Framework: JWT-Secured Authorization Request (JAR)
 ├── rfc9110/         # RFC 9110: HTTP Semantics field names & HTTP headers
 ├── oidc/            # OpenID Connect Core 1.0 & Discovery 1.0 facade, Provider, Server & Builder
@@ -97,10 +98,13 @@ gorfc/
 - **`claims.go`**: Contains an exhaustive dictionary of standard claim constants (`ClaimIss`, `ClaimSub`, `ClaimAud`, `ClaimNonce`, `ClaimAcr`, `ClaimAmr`, `ClaimCnf`, `ClaimHtm`, `ClaimHtu`, `ClaimAth`, etc.) spanning RFC 7519, OIDC, RFC 7800, RFC 8055, RFC 8225, RFC 8417, RFC 8693, RFC 9200, RFC 9449, RFC 9711, and 3GPP standards.
 
 #### 4. `rfc7636` (PKCE)
-- **Scope**: Proof Key for Code Exchange constants (`code_verifier`, `code_challenge`, `code_challenge_method`), transform methods (`S256`, `plain`), ABNF verifiers, and constant-time verification logic (`VerifyCodeVerifier`, `ComputeCodeChallenge`).
+- **Scope**: Proof Key for Code Exchange models (`AuthorizationRequest`, `TokenRequest`), constants (`code_verifier`, `code_challenge`, `code_challenge_method`), transform methods (`S256`, `plain`), extendable `PKCE` struct with injectable `MethodVerifier` / `TransformFunc` / `VerifierFunc`, `GenerateCodeVerifier`, ABNF verifiers, and constant-time verification logic (`VerifyCodeVerifier`, `ComputeCodeChallenge`).
 
 #### 5. `rfc8176` (Authentication Method Reference Values)
 - **Scope**: RFC 8176 AMR constants (`AMRPwd`, `AMRMfa`, `AMROtp`, `AMRUser`, `AMRHwk`, etc.) registered in the IANA Authentication Method Reference Values Registry.
+
+#### 6. `rfc8707` (Resource Indicators for OAuth 2.0)
+- **Scope**: RFC 8707 models (`AuthorizationRequest`, `TokenRequest`, dual string/slice `Resources`), constants (`ParamResource`, `ErrInvalidTarget`), RFC 3986 absolute-URI validators (`IsValidResourceURI`, `AreValidResourceURIs`, `NormalizeResourceURI`, `IsSubset`), HTTP request/form parsers (`ParseResourcesFromRequest`, `ParseResourcesFromValues`), and extendable `Validator` with injectable `ResourceVerifier` / `VerifierFunc`.
 
 #### 6. `oauth/client` & `oauth/identity`
 - **Scope**: Standalone leaf packages containing `Client` and `Identity` abstractions and context injection helpers (`client.WithContext`, `client.FromContext`, `identity.WithContext`, `identity.FromContext`), avoiding parent package imports in `oauth/grant`.

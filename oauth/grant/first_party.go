@@ -370,6 +370,7 @@ type FirstPartyAppGrant struct {
 	challengeCodeCreator ChallengeCodeCreator
 	codeExchanger        CodeExchanger
 	tokenIssuer          TokenIssuer
+	pkce                 *rfc7636.PKCE
 }
 
 // FirstPartyApplicationGrant is an alias for FirstPartyAppGrant.
@@ -409,6 +410,18 @@ func NewFirstPartyAppGrantFull(
 // SetChallengeCodeCreator sets a dedicated ChallengeCodeCreator.
 func (g *FirstPartyAppGrant) SetChallengeCodeCreator(creator ChallengeCodeCreator) {
 	g.challengeCodeCreator = creator
+}
+
+// SetPKCE sets a custom PKCE instance with injected method verifiers.
+func (g *FirstPartyAppGrant) SetPKCE(pkce *rfc7636.PKCE) {
+	g.pkce = pkce
+}
+
+func (g *FirstPartyAppGrant) getPKCE() *rfc7636.PKCE {
+	if g.pkce != nil {
+		return g.pkce
+	}
+	return rfc7636.DefaultPKCE
 }
 
 // HandleChallenge processes an authorization challenge request.
@@ -484,7 +497,7 @@ func (g *FirstPartyAppGrant) HandleChallenge(ctx context.Context, req Authorizat
 		if method == "" {
 			method = rfc7636.CodeChallengeMethodPlain
 		}
-		if !rfc7636.IsValidCodeChallengeMethod(method) {
+		if !g.getPKCE().IsValidCodeChallengeMethod(method) {
 			return nil, rfc6749.ProtocolError{Response: rfc6749.ErrorResponse{
 				Error:            rfc6749.ErrInvalidRequest,
 				ErrorDescription: "unsupported code_challenge_method",
@@ -598,7 +611,7 @@ func (g *FirstPartyAppGrant) HandleToken(ctx context.Context, req rfc6749.TokenR
 				ErrorDescription: "code_verifier is required and must be valid",
 			}}
 		}
-		if !rfc7636.VerifyCodeVerifier(verifier, authCode.CodeChallenge, authCode.CodeChallengeMethod) {
+		if !g.getPKCE().VerifyCodeVerifier(verifier, authCode.CodeChallenge, authCode.CodeChallengeMethod) {
 			return nil, rfc6749.ProtocolError{Response: rfc6749.ErrorResponse{
 				Error:            rfc6749.ErrInvalidGrant,
 				ErrorDescription: "code_verifier verification failed",

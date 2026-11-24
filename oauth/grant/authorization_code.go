@@ -44,6 +44,19 @@ type AuthorizationCodeGrant struct {
 	codeExchanger CodeExchanger
 	tokenIssuer   TokenIssuer
 	codeCreator   CodeCreator
+	pkce          *rfc7636.PKCE
+}
+
+// SetPKCE sets a custom PKCE instance with injected method verifiers.
+func (a *AuthorizationCodeGrant) SetPKCE(pkce *rfc7636.PKCE) {
+	a.pkce = pkce
+}
+
+func (a *AuthorizationCodeGrant) getPKCE() *rfc7636.PKCE {
+	if a.pkce != nil {
+		return a.pkce
+	}
+	return rfc7636.DefaultPKCE
 }
 
 // NewAuthorizationCodeGrant creates a new AuthorizationCodeGrant instance.
@@ -137,7 +150,7 @@ func (a *AuthorizationCodeGrant) HandleToken(ctx context.Context, req rfc6749.To
 				ErrorDescription: "code_verifier is required and must be valid",
 			}}
 		}
-		if !rfc7636.VerifyCodeVerifier(verifier, authCode.CodeChallenge, authCode.CodeChallengeMethod) {
+		if !a.getPKCE().VerifyCodeVerifier(verifier, authCode.CodeChallenge, authCode.CodeChallengeMethod) {
 			return nil, rfc6749.ProtocolError{Response: rfc6749.ErrorResponse{
 				Error:            rfc6749.ErrInvalidGrant,
 				ErrorDescription: "code_verifier verification failed",
